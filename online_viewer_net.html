@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gen Tots - AI Plus Course</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        /* Logo Styles */
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.3) 2px, transparent 2px),
+                radial-gradient(circle at 80% 40%, rgba(255,255,255,0.3) 2px, transparent 2px),
+                radial-gradient(circle at 40% 80%, rgba(255,255,255,0.3) 2px, transparent 2px);
+            background-size: 15px 15px;
+        }
+        
+        .logo-text {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Header */
+        .header {
+            background: white;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .brand-text h1 {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .brand-text p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #f97316, #ec4899, #8b5cf6);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #dbeafe, #fce7f3, #fed7aa);
+            padding: 120px 20px 80px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            color: #555;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #22c55e, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+        
+        .btn-secondary {
+            border: 3px solid #8b5cf6;
+            color: #8b5cf6;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover, .btn-secondary:hover {
+            transform: scale(1.05);
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .stat-card {
+            background: rgba(255,255,255,0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Sections */
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section h2 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Course Modules */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .module-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-top: 5px solid;
+            transition: transform 0.3s;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .module-card:nth-child(1) { border-top-color: #3b82f6; background: linear-gradient(135deg, #dbeafe, #f8fafc); }
+        .module-card:nth-child(2) { border-top-color: #8b5cf6; background: linear-gradient(135deg, #ede9fe, #f8fafc); }
+        .module-card:nth-child(3) { border-top-color: #22c55e; background: linear-gradient(135deg, #d1fae5, #f8fafc); }
+        .module-card:nth-child(4) { border-top-color: #f97316; background: linear-gradient(135deg, #fed7aa, #f8fafc); }
+        .module-card:nth-child(5) { border-top-color: #ef4444; background: linear-gradient(135deg, #fecaca, #f8fafc); }
+        .module-card:nth-child(6) { border-top-color: #6366f1; background: linear-gradient(135deg, #e0e7ff, #f8fafc); }
+        
+        .module-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .module-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .module-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .module-card li {
+            padding: 8px 0;
+            color: #555;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .module-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #22c55e;
+            font-weight: bold;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            background: linear-gradient(135deg, #fef3c7, #fed7aa, #fecaca);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .benefit-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            background: linear-gradient(135deg, #dbeafe, #f0fdf4);
+            text-align: center;
+        }
+        
+        .price-card {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 0 auto;
+            border-top: 8px solid;
+            border-image: linear-gradient(135deg, #3b82f6, #8b5cf6) 1;
+            position: relative;
+        }
+        
+        .price-badge {
+            background: linear-gradient(135deg, #22c55e, #3b82f6);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+        
+        .price {
+            font-size: 64px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #22c55e, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .price-details {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .features-list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+        
+        .features-list li {
+            padding: 12px 0;
+            position: relative;
+            padding-left: 30px;
+            font-weight: 500;
+        }
+        
+        .features-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #22c55e;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, #fef3c7, #fed7aa, #fecaca);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .stars {
+            color: #fbbf24;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .author-info h4 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #dbeafe, #ede9fe, #fce7f3);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .contact-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-cta {
+            background: linear-gradient(135deg, #f97316, #ec4899, #8b5cf6);
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            color: white;
+        }
+        
+        .contact-cta h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-cta p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 60px 20px 30px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h4 {
+            color: #60a5fa;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section ul li a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section ul li a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 30px;
+            text-align: center;
+            color: #9ca3af;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .modules-grid,
+            .benefits-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .price {
+                font-size: 48px;
+            }
+            
+            .section h2 {
+                font-size: 32px;
+            }
+        }
+        
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo-section">
+                <div class="logo">
+                    <div class="logo-text">GT</div>
+                </div>
+                <div class="brand-text">
+                    <h1>GEN TOTS</h1>
+                    <p>AI Plus Course</p>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="#about">About</a>
+                <a href="#benefits">Benefits</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <a href="https://rzp.io/rzp/piegz3h" class="cta-button">Enroll Now</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo hero-logo">
+                <div class="logo-text">GT</div>
+            </div>
+            <h1>AI PLUS COURSE</h1>
+            <p>Empowering Your Child with Essential Digital Skills for Tomorrow's World!</p>
+            <p style="font-size: 18px; color: #666; margin-bottom: 40px;">From IoT & Robotics to AI & Cybersecurity - A Complete Digital Journey for Ages 8-18</p>
+            
+            <div class="hero-buttons">
+                <a href="https://rzp.io/rzp/piegz3h" class="btn-primary">Start Learning Today</a>
+                <a href="#about" class="btn-secondary">Explore Course</a>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <strong>Ages 8-18</strong>
+                </div>
+                <div class="stat-card">
+                    <strong>Self-Paced</strong>
+                </div>
+                <div class="stat-card">
+                    <strong>Certified</strong>
+                </div>
+                <div class="stat-card">
+                    <strong>AI Ready</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2>About the <span class="gradient-text">AI Plus Course</span></h2>
+        <p class="section-subtitle">A comprehensive digital literacy journey designed to prepare your child for the exciting world of technology and innovation!</p>
+        
+        <div class="modules-grid">
+            <div class="module-card">
+                <div class="module-icon">🌐</div>
+                <h3>IoT & Smart Technologies</h3>
+                <ul>
+                    <li>Smart homes, farms, and cities</li>
+                    <li>Real-world IoT applications</li>
+                    <li>Design solutions for local problems</li>
+                    <li>Fun simulation projects</li>
+                </ul>
+            </div>
+            
+            <div class="module-card">
+                <div class="module-icon">🥽</div>
+                <h3>AR/VR Adventures</h3>
+                <ul>
+                    <li>Virtual Reality exploration</li>
+                    <li>Augmented Reality projects</li>
+                    <li>Educational VR experiences</li>
+                    <li>Create immersive content</li>
+                </ul>
+            </div>
+            
+            <div class="module-card">
+                <div class="module-icon">📊</div>
+                <h3>Google Workspace Mastery</h3>
+                <ul>
+                    <li>Docs, Sheets, Slides, Gmail</li>
+                    <li>Professional presentations</li>
+                    <li>Team collaboration skills</li>
+                    <li>Cloud-based productivity</li>
+                </ul>
+            </div>
+            
+            <div class="module-card">
+                <div class="module-icon">🎨</div>
+                <h3>Creative Design Studio</h3>
+                <ul>
+                    <li>Canva design mastery</li>
+                    <li>Digital art creation</li>
+                    <li>Social media graphics</li>
+                    <li>Creative portfolio building</li>
+                </ul>
+            </div>
+            
+            <div class="module-card">
+                <div class="module-icon">🔒</div>
+                <h3>Cybersecurity Heroes</h3>
+                <ul>
+                    <li>Online safety practices</li>
+                    <li>Cyber threat awareness</li>
+                    <li>Digital citizenship</li>
+                    <li>Privacy protection skills</li>
+                </ul>
+            </div>
+            
+            <div class="module-card">
+                <div class="module-icon">🤖</div>
+                <h3>AI & Future Tech</h3>
+                <ul>
+                    <li>AI/ML fundamentals</li>
+                    <li>Robotics and automation</li>
+                    <li>Future tech trends</li>
+                    <li>Innovation mindset</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="section benefits">
+        <h2>Why Parents Choose <span class="gradient-text">Gen Tots?</span></h2>
+        <p class="section-subtitle">Discover why thousands of parents trust us with their child's digital future!</p>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">🚀</div>
+                <h3>Future-Ready Skills</h3>
+                <p>Prepare your child for careers in technology, AI, and digital innovation with cutting-edge skills that matter in tomorrow's job market.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">🎮</div>
+                <h3>Interactive Learning</h3>
+                <p>Engaging projects, fun simulations, and hands-on activities that make learning technology as exciting as playing games!</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">🇮🇳</div>
+                <h3>Local Relevance</h3>
+                <p>Examples and case studies from Indian context and Telangana region for better understanding and cultural connection.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">🏆</div>
+                <h3>Industry Recognition</h3>
+                <p>Earn a Digital Literacy Certificate recognized by educational institutions and industry professionals.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">⏰</div>
+                <h3>Flexible Schedule</h3>
+                <p>Self-paced learning that fits into your child's schedule - perfect for busy families and different learning styles.</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">📚</div>
+                <h3>Complete Learning</h3>
+                <p>From basic digital literacy to advanced AI concepts - everything your child needs for the digital age in one comprehensive course.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="section pricing">
+        <h2><span class="gradient-text">Affordable Excellence</span></h2>
+        <p class="section-subtitle">Premium digital education at a price that every family can afford!</p>
+        
+        <div class="price-card">
+            <div class="price-badge">COMPLETE AI PLUS COURSE</div>
+            <div class="price">₹2,000</div>
+            <div class="price-details">
+                Complete 1-Year Course • Only <strong>₹167/month</strong><br>
+                <span style="color: #22c55e; font-weight: bold;">Save ₹3,000 compared to similar courses!</span>
+            </div>
+            
+            <ul class="features-list">
+                <li>8 Comprehensive Tech Modules</li>
+                <li>Industry-Recognized Certification</li>
+                <li>Interactive Projects & Assessments</li>
+                <li>Complete Learning Materials</li>
+                <li>Lifetime Access & Updates</li>
+                <li>Expert Support & Guidance</li>
+            </ul>
+            
+            <a href="https://rzp.io/rzp/piegz3h" class="btn-primary" style="display: block; text-align: center; margin-bottom: 20px;">
+                Secure Your Child's Future - ₹2,000
+            </a>
+            
+            <p style="font-size: 14px; color: #666;">Secure Payment • Safe & Trusted • Instant Access</p>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section testimonials">
+        <h2>What Parents & Students <span class="gradient-text">Love About Us</span></h2>
+        <p class="section-subtitle">Real stories from families who chose Gen Tots for their child's digital future</p>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"My son was struggling with technology concepts, but Gen Tots made it so engaging! The IoT and robotics modules sparked his interest in engineering. Now he's building his own projects!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">S</div>
+                    <div class="author-info">
+                        <h4>Sridevi Reddy</h4>
+                        <p>Parent, Hyderabad</p>
+                        <p style="color: #3b82f6;">Son: Arjun (Grade 9)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"The cybersecurity module taught my daughter essential online safety skills. The course content is perfect for Indian students - relatable examples and practical applications!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">R</div>
+                    <div class="author-info">
+                        <h4>Radhika Sharma</h4>
+                        <p>Parent, Warangal</p>
+                        <p style="color: #8b5cf6;">Daughter: Priya (Grade 7)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Best investment for my child's future! The AI and machine learning concepts are explained so clearly. My son now wants to pursue computer science thanks to this course."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">M</div>
+                    <div class="author-info">
+                        <h4>Madhavi Kumar</h4>
+                        <p>Parent, Nizamabad</p>
+                        <p style="color: #22c55e;">Son: Rohit (Grade 11)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <h2>Ready to Start Your Child's <span class="gradient-text">Digital Journey?</span></h2>
+        <p class="section-subtitle">Join thousands of families already building their children's future with Gen Tots</p>
+        
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <h3>Email Support</h3>
+                <p>Get detailed course information and expert guidance</p>
+                <a href="mailto:Gentots.com@gmail.com" style="color: #3b82f6; font-weight: bold;">Gentots.com@gmail.com</a>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">📞</div>
+                <h3>Call for Consultation</h3>
+                <p>Speak with our education consultants</p>
+                <a href="tel:+918332865338" style
